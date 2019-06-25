@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Tab One
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list-header>
+    <ion-label>Root outlet</ion-label>
+  </ion-list-header>
+
+  <ion-list>
+    <ion-item>
+      <ion-label text-wrap>Simulate fast navigation</ion-label>
+      <ion-toggle [(ngModel)]="simulateFastNavigation"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label text-wrap>
+        <ion-note>
+          Enable to simulate a fast back-navigation on the root outlet
+          (navCtrl.pop() will be called directly after ionViewDidEnter())
+        </ion-note>
+      </ion-label>
+    </ion-item>
+
+    <ion-item (click)="navigateViaRootOutlet()" detail>
+      <ion-label text-wrap>Navigate via root outlet</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list-header>
+    <ion-label>Tab outlet</ion-label>
+  </ion-list-header>
+
+  <ion-list>
+    <ion-item [routerLink]="'page2'" detail>
+      <ion-label text-wrap>Navigate via tab outlet</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list-header>
+    <ion-label>Instructions to reproduce:</ion-label>
+  </ion-list-header>
+
+  <ion-list>
+    <ion-item>
+      <ion-note>
+        <ol>
+          <li>Enable "Simulate fast navigation"</li>
+          <li>Click "Navigate via root outlet"</li>
+          <li>Back navigation is triggered</li>
+          <li>Click "Navigate via tab outlet"</li>
+          <li>
+            Page is empty, but three cards should be rendered (template
+            expressions not evaluated)
+          </li>
+          <li>Disable "Simulate fast navigation"</li>
+          <li>Click "Navigate via root outlet"</li>
+          <li>Click "Back"</li>
+          <li>Click "Navigate via tab outlet"</li>
+          <li>Page is rendered as intended</li>
+        </ol>
+      </ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>
